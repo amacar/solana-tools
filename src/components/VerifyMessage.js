@@ -50,7 +50,20 @@ export const VerifyMessage = () => {
           <FormControlLabel value="base58" control={<Radio />} label="Base58" />
         </RadioGroup>
       </FormControl>
-      <h2>Signature is {!result && "not "} verified!</h2>
+      <div style={{ textAlign: "center", marginTop: "35px" }}>
+        <span
+          style={{
+            backgroundColor: result ? "#2e7d32" : "#d32f2f",
+            color: "white",
+            borderRadius: "20px",
+            padding: "15px",
+            fontWeight: "bold",
+            fontSize: "x-large",
+          }}
+        >
+          Signature is {!result && "not "} verified!
+        </span>
+      </div>
     </div>
   );
 };

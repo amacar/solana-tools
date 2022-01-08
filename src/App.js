@@ -20,8 +20,8 @@ export const App = () => {
         <Box>
           <Box sx={{ borderBottom: 1, borderColor: "divider", display: "flex", justifyContent: "center" }}>
             <Tabs value={selectedTab} onChange={handleTabChange}>
-              <Tab label="Sign Message" />
-              <Tab label="Verify Message" />
+              <Tab style={{ fontWeight: "bold" }} label="Sign Message" />
+              <Tab style={{ fontWeight: "bold" }} label="Verify Message" />
             </Tabs>
           </Box>
           <Box>

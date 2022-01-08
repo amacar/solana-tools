@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Solana tools",
   "main": "src/index.js",
+  "homepage": "https://amacar.github.io/solana-tools",
   "dependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
