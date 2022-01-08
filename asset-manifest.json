@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/solana-tools/static/css/main.ea36d474.chunk.css",
+    "main.js": "/solana-tools/static/js/main.a50d3539.chunk.js",
+    "main.js.map": "/solana-tools/static/js/main.a50d3539.chunk.js.map",
+    "runtime-main.js": "/solana-tools/static/js/runtime-main.603c5ea8.js",
+    "runtime-main.js.map": "/solana-tools/static/js/runtime-main.603c5ea8.js.map",
+    "static/js/2.19f11c18.chunk.js": "/solana-tools/static/js/2.19f11c18.chunk.js",
+    "static/js/2.19f11c18.chunk.js.map": "/solana-tools/static/js/2.19f11c18.chunk.js.map",
+    "index.html": "/solana-tools/index.html",
+    "static/css/main.ea36d474.chunk.css.map": "/solana-tools/static/css/main.ea36d474.chunk.css.map",
+    "static/js/2.19f11c18.chunk.js.LICENSE.txt": "/solana-tools/static/js/2.19f11c18.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.603c5ea8.js",
+    "static/js/2.19f11c18.chunk.js",
+    "static/css/main.ea36d474.chunk.css",
+    "static/js/main.a50d3539.chunk.js"
+  ]
+}
