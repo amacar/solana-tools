@@ -29,11 +29,7 @@ export const VerifyMessage = () => {
   try {
     const messageBytes = new TextEncoder().encode(message);
     const publicKeyBytes = bs58.decode(address);
-    const signatureBytes =
-      sigFormat === "base58"
-        ? bs58.decode(signature)
-        : Buffer.from(sigFormat === "hex" ? signature.replace("0x", "") : JSON.parse(signature), "hex");
-
+    const signatureBytes = getSignatureBytes(sigFormat, signature);
     result = nacl.sign.detached.verify(messageBytes, signatureBytes, publicKeyBytes);
   } catch {}
 
@@ -48,6 +44,7 @@ export const VerifyMessage = () => {
           <FormControlLabel value="byteArray" control={<Radio />} label="Byte Array" />
           <FormControlLabel value="hex" control={<Radio />} label="Hex" />
           <FormControlLabel value="base58" control={<Radio />} label="Base58" />
+          <FormControlLabel value="base64" control={<Radio />} label="Base64" />
         </RadioGroup>
       </FormControl>
       <div style={{ textAlign: "center", marginTop: "35px" }}>
@@ -66,4 +63,17 @@ export const VerifyMessage = () => {
       </div>
     </div>
   );
+};
+
+const getSignatureBytes = (sigFormat, signature) => {
+  switch (sigFormat) {
+    case "base58":
+      return bs58.decode(signature);
+    case "base64":
+      return Buffer.from(signature, sigFormat);
+    case "hex":
+      return Buffer.from(signature.replace("0x", ""), sigFormat);
+    case "byteArray":
+      return Buffer.from(JSON.parse(signature), "hex");
+  }
 };
