@@ -5,3 +5,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.MuiButton-text,
+h2 .MuiSvgIcon-root,
+.MuiTypography-h6 {
+  color: white !important;
+}
+
+.MuiSnackbarContent-root {
+  background-color: red !important;
+}

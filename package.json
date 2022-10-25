@@ -5,14 +5,17 @@
   "main": "src/index.js",
   "homepage": "https://amacar.github.io/solana-tools",
   "dependencies": {
+    "@emotion/react": "11.7.1",
+    "@emotion/styled": "11.6.0",
+    "@mui/material": "5.10.11",
+    "@solana/wallet-adapter-material-ui": "^0.16.16",
+    "@solana/wallet-adapter-react": "^0.15.20",
+    "@solana/wallet-adapter-wallets": "^0.19.5",
+    "bs58": "4.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-scripts": "4.0.0",
-    "tweetnacl": "1.0.3",
-    "bs58": "4.0.1",
-    "@emotion/react": "11.7.1",
-    "@emotion/styled": "11.6.0",
-    "@mui/material": "5.2.7"
+    "tweetnacl": "1.0.3"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,21 +1,8 @@
 import { useState } from "react";
 import nacl from "tweetnacl";
 import bs58 from "bs58";
-import { TextField, FormControl, FormLabel, RadioGroup, Radio, FormControlLabel } from "@mui/material";
-
-const style = { marginBottom: "15px", width: "100%" };
-
-const CustomTextField = ({ label, value, setValue, multiline = false, ...props }) => (
-  <TextField
-    {...props}
-    multiline={multiline}
-    style={style}
-    label={label}
-    variant="outlined"
-    value={value}
-    onChange={(e) => setValue(e.target.value)}
-  />
-);
+import { CustomTextField } from "./TextField";
+import { SignatureFormat } from "./SignatureFormat";
 
 export const VerifyMessage = () => {
   const [sigFormat, setSigFormat] = useState("byteArray");
@@ -38,15 +25,7 @@ export const VerifyMessage = () => {
       <CustomTextField multiline label="Message" value={message} setValue={setMessage} />
       <CustomTextField label="SOL Address" value={address} setValue={setAddress} />
       <CustomTextField multiline minRows={4} label="Signature" value={signature} setValue={setSignature} />
-      <FormControl>
-        <FormLabel>Signature format</FormLabel>
-        <RadioGroup row value={sigFormat} onChange={(e) => setSigFormat(e.target.value)}>
-          <FormControlLabel value="byteArray" control={<Radio />} label="Byte Array" />
-          <FormControlLabel value="hex" control={<Radio />} label="Hex" />
-          <FormControlLabel value="base58" control={<Radio />} label="Base58" />
-          <FormControlLabel value="base64" control={<Radio />} label="Base64" />
-        </RadioGroup>
-      </FormControl>
+      <SignatureFormat sigFormat={sigFormat} onSigFormatChange={(e) => setSigFormat(e.target.value)} />
       <div style={{ textAlign: "center", marginTop: "35px" }}>
         <span
           style={{
