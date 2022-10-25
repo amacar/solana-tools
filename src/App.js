@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Container, Tabs, Tab, Box } from "@mui/material";
 import { WalletProvider } from "@solana/wallet-adapter-react";
-import { PhantomWalletAdapter, SolflareWalletAdapter } from "@solana/wallet-adapter-wallets";
-import { WalletDialogProvider, WalletDisconnectButton, WalletMultiButton } from "@solana/wallet-adapter-material-ui";
+import { PhantomWalletAdapter, SolflareWalletAdapter, SolletWalletAdapter } from "@solana/wallet-adapter-wallets";
+import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
 
 import { Header } from "./components/Header";
 import { VerifyMessage } from "./components/VerifyMessage";
 import { SignMessage } from "./components/SignMessage";
 
 const TabPanel = ({ children, value, index }) => <>{value === index && <Box sx={{ p: 3 }}>{children}</Box>}</>;
-const wallets = [new PhantomWalletAdapter(), new SolflareWalletAdapter()];
+const wallets = [new PhantomWalletAdapter(), new SolflareWalletAdapter(), new SolletWalletAdapter()];
 
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(0);
