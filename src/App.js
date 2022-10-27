@@ -8,14 +8,23 @@ import { Header } from "./components/Header";
 import { VerifyMessage } from "./components/VerifyMessage";
 import { SignMessage } from "./components/SignMessage";
 
+const SIGN_ROUTE = "/#sign-message";
+const VERIFY_ROUTE = "/#verify-message";
+const routeRegex = new RegExp(`(${SIGN_ROUTE}|${VERIFY_ROUTE})`);
+
 const TabPanel = ({ children, value, index }) => <>{value === index && <Box sx={{ p: 3 }}>{children}</Box>}</>;
+
 const wallets = [new PhantomWalletAdapter(), new SolflareWalletAdapter(), new SolletWalletAdapter()];
 
 export const App = () => {
-  const [selectedTab, setSelectedTab] = useState(0);
+  const isVerify = window.location.href.includes(VERIFY_ROUTE);
+  const [selectedTab, setSelectedTab] = useState(isVerify ? 1 : 0);
 
-  const handleTabChange = (_, newValue) => {
-    setSelectedTab(newValue);
+  const handleTabChange = (_, value) => {
+    setSelectedTab(value);
+    const currentUrl = window.location.href.replace(/\/$/, "");
+    const url = `${currentUrl.replace(routeRegex, "")}${value ? VERIFY_ROUTE : SIGN_ROUTE}`;
+    window.history.replaceState({}, "", url);
   };
 
   return (
