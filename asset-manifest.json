@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/solana-tools/static/css/main.71cd0a4c.chunk.css",
+    "main.js": "/solana-tools/static/js/main.c10d59ac.chunk.js",
+    "main.js.map": "/solana-tools/static/js/main.c10d59ac.chunk.js.map",
+    "runtime-main.js": "/solana-tools/static/js/runtime-main.718837a7.js",
+    "runtime-main.js.map": "/solana-tools/static/js/runtime-main.718837a7.js.map",
+    "static/js/2.bc6aee76.chunk.js": "/solana-tools/static/js/2.bc6aee76.chunk.js",
+    "static/js/2.bc6aee76.chunk.js.map": "/solana-tools/static/js/2.bc6aee76.chunk.js.map",
+    "static/js/3.ef7257b1.chunk.js": "/solana-tools/static/js/3.ef7257b1.chunk.js",
+    "static/js/3.ef7257b1.chunk.js.map": "/solana-tools/static/js/3.ef7257b1.chunk.js.map",
+    "static/js/4.a9a5f162.chunk.js": "/solana-tools/static/js/4.a9a5f162.chunk.js",
+    "static/js/4.a9a5f162.chunk.js.map": "/solana-tools/static/js/4.a9a5f162.chunk.js.map",
+    "index.html": "/solana-tools/index.html",
+    "static/css/main.71cd0a4c.chunk.css.map": "/solana-tools/static/css/main.71cd0a4c.chunk.css.map",
+    "static/js/2.bc6aee76.chunk.js.LICENSE.txt": "/solana-tools/static/js/2.bc6aee76.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.718837a7.js",
+    "static/js/2.bc6aee76.chunk.js",
+    "static/css/main.71cd0a4c.chunk.css",
+    "static/js/main.c10d59ac.chunk.js"
+  ]
+}
