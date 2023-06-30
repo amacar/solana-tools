@@ -19,7 +19,7 @@ export const SignMessage = () => {
 
   const signMessageHandler = async () => {
     try {
-      const encodedMessage = new TextEncoder().encode(message);
+      const encodedMessage = Buffer.from(message);
       setIsSigning(true);
       const sigArr = await signMessage(encodedMessage, "utf8");
       const sig = Buffer.from(sigArr).toJSON().data;

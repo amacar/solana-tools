@@ -14,10 +14,17 @@ export const VerifyMessage = () => {
 
   let result = false;
   try {
-    const messageBytes = new TextEncoder().encode(message);
+    const messageBytes = Buffer.from(message);
     const publicKeyBytes = bs58.decode(address);
+    const messages = getMessageBytes(sigFormat, messageBytes);
     const signatureBytes = getSignatureBytes(sigFormat, signature);
-    result = nacl.sign.detached.verify(messageBytes, signatureBytes, publicKeyBytes);
+    result = messages.some((message) => {
+      try {
+        return nacl.sign.detached.verify(message, signatureBytes, publicKeyBytes);
+      } catch {
+        return false;
+      }
+    });
   } catch {}
 
   return (
@@ -55,4 +62,21 @@ const getSignatureBytes = (sigFormat, signature) => {
     case "byteArray":
       return Buffer.from(JSON.parse(signature), "hex");
   }
+};
+
+const getMessageBytes = (sigFormat, message) => {
+  const messageBytes = Buffer.from(message);
+  const messages = [messageBytes];
+
+  if (sigFormat === "base58") {
+    const domain = Buffer.concat([Buffer.from(["0xff"]), Buffer.from("solana offchain")]);
+    const version = Buffer.from([0]);
+    const messageTypes = [Buffer.from([0]), Buffer.from([1]), Buffer.from([2])];
+    const messageLength = Buffer.from(new Uint8Array(new Uint16Array([messageBytes.length]).buffer));
+    messages.push(
+      ...messageTypes.map((messageType) => Buffer.concat([domain, version, messageType, messageLength, messageBytes]))
+    );
+  }
+
+  return messages;
 };
