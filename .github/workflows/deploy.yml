@@ -1,6 +1,7 @@
 name: Github Page Deploy Workflow
 
 on:
+  workflow_dispatch:
   push:
     branches: [master]
 
