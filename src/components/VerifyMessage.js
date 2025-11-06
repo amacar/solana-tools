@@ -16,7 +16,7 @@ export const VerifyMessage = () => {
   try {
     const messageBytes = Buffer.from(message);
     const publicKeyBytes = bs58.decode(address);
-    const messages = getMessageBytes(sigFormat, messageBytes);
+    const messages = getMessageBytes(sigFormat, messageBytes, publicKeyBytes);
     const signatureBytes = getSignatureBytes(sigFormat, signature);
     result = messages.some((message) => {
       try {
@@ -58,25 +58,31 @@ const getSignatureBytes = (sigFormat, signature) => {
     case "base64":
       return Buffer.from(signature, sigFormat);
     case "hex":
+      if (!/^[0-9a-fA-F]+$/.test(signature) || signature.length % 2 !== 0) {
+          throw new Error("Invalid hex signature");
+      }
       return Buffer.from(signature.replace("0x", ""), sigFormat);
     case "byteArray":
       return Buffer.from(JSON.parse(signature), "hex");
   }
 };
 
-const getMessageBytes = (sigFormat, message) => {
+const getMessageBytes = (sigFormat, message, publicKey) => {
   const messageBytes = Buffer.from(message);
   const messages = [messageBytes];
 
-  if (sigFormat === "base58") {
-    const domain = Buffer.concat([Buffer.from(["0xff"]), Buffer.from("solana offchain")]);
-    const version = Buffer.from([0]);
-    const messageTypes = [Buffer.from([0]), Buffer.from([1]), Buffer.from([2])];
-    const messageLength = Buffer.from(new Uint8Array(new Uint16Array([messageBytes.length]).buffer));
-    messages.push(
-      ...messageTypes.map((messageType) => Buffer.concat([domain, version, messageType, messageLength, messageBytes]))
-    );
-  }
+  const domain = Buffer.concat([Buffer.from([0xff]), Buffer.from("solana offchain")]);
+  const version = Buffer.from([0]);
+  const appDomain = Buffer.alloc(32, 0);
+  const signersCount = Buffer.from([1]);
+  const messageTypes = [Buffer.from([0]), Buffer.from([1]), Buffer.from([2])];
+  const messageLength = Buffer.from(new Uint8Array(new Uint16Array([messageBytes.length]).buffer));
+  messages.push(
+    ...messageTypes.map((messageType) => Buffer.concat([domain, version, messageType, messageLength, messageBytes]))
+  );
+  messages.push(
+    ...messageTypes.map((messageType) => Buffer.concat([domain, version, appDomain, messageType, signersCount, publicKey, messageLength, messageBytes]))
+  );
 
   return messages;
 };
